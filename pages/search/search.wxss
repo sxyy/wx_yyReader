@@ -1,0 +1,141 @@
+/**index.wxss**/
+.header-bar {
+  width: 100%;
+  height: 50px;
+  background: #aaa;
+  top: 0px;
+}
+
+.header-input {
+  float: left;
+  height: 30px;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.header-search {
+  float: right;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.cellimage{
+  min-width: 120rpx;
+  width: 120rpx;
+  height: 170rpx;
+}
+
+.flex-cell-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell-follower {
+  color: red;
+  font-size: 14px;
+}
+
+.celllabel {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+}
+.cell-author {
+  font-size: 14px;
+  color: grey;
+}
+.cell-intro {
+  width: 250px;
+  white-space:nowrap; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  color: grey;
+}
+.celltext{
+  font-size: 16px;
+}
+
+.celltip {
+    font-size: 14px;
+    position:absolute;
+    margin-top: 5px;
+    right:10px;
+    color: grey;
+}
+
+.posts-list{
+  position: relative;
+  overflow: hidden;
+  padding: 0 30rpx;
+
+}
+
+.posts-item {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  padding: 10px 0 10px 10px;
+  font-size: 14px;
+  padding-right: 10px;
+  background: #fff;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.collect-books {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px 15px;
+}
+
+.collect-book {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 10px 0px 10px 8px;
+}
+
+.collect-add-book {
+  
+  -webkit-text-stroke: 5px white;
+  background: white;
+}
+
+.collect-books-total {
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 10px;
+
+}
+
+.collect-title {
+  font-size: 13px;
+  width: 80px;
+  white-space:nowrap; 
+  overflow:hidden; 
+  text-overflow:ellipsis;
+}
+
+.collect-recent-read {
+  font-size: 10px;
+  width: 80px;
+}
+
+.collect-img {
+  min-width: 160rpx;
+  width: 160rpx;
+  height: 200rpx;
+}
+
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}

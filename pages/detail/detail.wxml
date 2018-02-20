@@ -1,0 +1,119 @@
+<!--detail.wxml-->
+<view>
+  <scroll-view class="{{night ? 'detail' : 'detail-day'}}" scroll-y="true" style="height: 100vh;" scroll-into-view="{{toView}}" bindscrolltolower="lower">
+    <!--mask-->
+
+    <view>
+      <view id="top" class="weui-article__h3 detail-title">{{title}}</view>
+      <view id="content" bindtap="showModal" style="margin: 10px">
+        <block wx:for-items="{{content}}" wx:for-item="item" wx:key="item">
+          <view style="text-indent:25px">
+            <text class="weui-article__p detail-content" style="font-size: {{fontSize}}px">{{item}}\n</text>
+          </view>
+        </block>
+
+
+      </view>
+      <view hidden="{{chapterStatus}}">
+        <view class="{{night ? 'next-chapter-night' : (chapterIndex === (chapters.length-1) ? 'disable-next-chapter' : 'next-chapter')}}" bindtap="nextChapter">{{chapterIndex === (chapters.length - 1) ? '已经是最后一章' : '下一章'}}</view>
+        <view class="{{night ? 'last-chapter-night' : (chapterIndex === 1 ? 'disable-last-chapter' : 'last-chapter')}}" bindtap="lastChapter">{{chapterIndex === 1 ? "已经是第一章" : "上一章"}}</view>
+        <view class="{{night ? 'folder-night' : 'folder'}}" data-statu="open" bindtap="powerDrawer">目录</view>
+      </view>
+
+
+
+
+
+      <!--此处为底部菜单栏-->
+      <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+      <view class="chapter_attr_box" wx:if="{{showModalStatus}}">
+        <text class="chapter-title">{{chapters[chapterIndex - 1].title}}</text>
+      </view>
+      <view class="commodity_attr_box" wx:if="{{showModalStatus}}">
+        <view>
+          <view bindtap="changeDayMode" class="top-bar-item">
+            <i wx:if="{{night}}" class="fa fa-sun-o night-color-icon"></i>
+            <i wx:else class="fa fa-moon-o night-color-icon"></i>
+            <view wx:if="{{night}}" class="font-tip">正常</view>
+            <view wx:else class="font-tip">夜间</view>
+          </view>
+          <view id="setting" bindtap="showSettingModal" class="top-bar-item">
+            <i class="fa fa-font night-color-icon"></i>
+            <view class="font-tip">字体</view>
+          </view>
+          <view class="top-bar-item" bindtap='addToShelfOrDeleteFromShelf'>
+            <i  wx:if="{{collect}}" class="fa fa-heart night-color-icon"></i>
+            <i  wx:else class="fa fa-heart-o night-color-icon"></i>
+            <view wx:if="{{collect}}" class="font-tip">取消收藏</view>
+            <view wx:else class="font-tip">收藏</view>
+          </view>
+          <view bindtap="powerDrawer" data-statu="open" class="top-bar-item">
+            <i class="fa fa-list night-color-icon"></i>
+            <view class="font-tip">目录</view>
+          </view>
+          <view class="top-bar-item" bindtap='openBookSource'>
+            <i class="fa fa-filter night-color-icon"></i>
+            <view class="font-tip">书源</view>
+          </view>
+
+        </view>
+      </view>
+
+      <view animation="{{animationData2}}" class="setting_attr_box" wx:if="{{showSettingStatus}}">
+        <view class="font-setting">
+          <i bindtap="fontChangeBig" class="font-icon-white fa fa-font fa-lg">+</i>
+          <i bindtap="fontChangeSmall" class="font-icon-white fa fa-font fa-lg">-</i>
+        </view>
+      </view>
+
+
+
+    </view>
+  </scroll-view>
+
+
+  <!--此处为目录列表处-->
+  <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus1}}"></view>
+  <view class="drawer_box" wx:if="{{showModalStatus1}}">
+    <scroll-view scroll-y="true" style="height: 100vh;" scroll-into-view="{{toChapterView}}">
+      <block wx:for-items="{{chapters}}" wx:for-item="item" wx:key="link">
+        <view class="{{night ? 'chapter-list' : 'chapter-list-day'}}">
+          <a href="#" class="chapter-round">●</a>
+          <view id="chapter-{{index}}" class="{{night ? 'chapter-item' : 'chapter-item-day'}}" bindtap="selectChapter" data-statu="close">
+            <text wx:if="{{chapterIndex-1 == index}}" class="celltip2">{{item.title}}</text>
+            <text wx:else class="celltip">{{item.title}}</text>
+          </view>
+        </view>
+
+      </block>
+    </scroll-view>
+    <view class="bottom-box">
+      <i class="fa fa-times-circle time-icon" bindtap="closeFolder"></i>
+    </view>
+  </view>
+
+
+
+  <!--此处为书源列表处-->
+  <view class="drawer_box" wx:if="{{bookSourceStatus}}">
+    <scroll-view scroll-y="true" style="height: 100vh;" scroll-into-view="{{toChapterView}}">
+      <block wx:for-items="{{sourceIds}}" wx:for-item="item" wx:key="sourceId">
+        <view class="{{night ? 'chapter-list' : 'chapter-list-day'}}">
+          <a href="#" class="chapter-round">●</a>
+          <view id="{{item['_id']}}" class="{{night ? 'chapter-item' : 'chapter-item-day'}}" bindtap="selectSource" data-statu="close">
+            <text wx:if="{{sourceId == item['_id']}}" class="celltip2">{{item.name}}</text>
+            <text wx:else class="celltip">{{item.name}}</text>
+          </view>
+        </view>
+
+      </block>
+    </scroll-view>
+    <view class="bottom-box">
+      <i class="fa fa-times-circle time-icon" bindtap="closeBookSource"></i>
+    </view>
+  </view>
+
+
+
+
+</view>

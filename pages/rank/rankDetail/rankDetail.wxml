@@ -1,0 +1,13 @@
+<import src="../../template/template.wxml"/>
+<view class="container">  
+  <view wx:if = "{{rankItem.isTabBar}}">
+      <view class="top-bar">
+      <view data-statu="{{rankItem._id}}" class="top-bar-item {{isActive === 0 ? 'top-bar-item-active': ''}}" id="weekRank" data-index = "0" catchtap="onTapTag">周榜</view>
+      <view data-statu="{{rankItem.monthRank}}" data-index = "1" class="top-bar-item {{isActive === 1 ? 'top-bar-item-active': ''}}" id="monthRank" catchtap="onTapTag">月榜</view>
+      <view data-statu="{{rankItem.totalRank}}" data-index = "2" class="top-bar-item {{isActive === 2 ? 'top-bar-item-active': ''}}" id="totalRank" catchtap="onTapTag">总榜</view>
+    </view>
+    <view class="flag-line" animation="{{animationData}}"></view>
+    </view>
+  
+  <template is="book-list" data="{{books, scrollViewMargin}}"/>
+</view>

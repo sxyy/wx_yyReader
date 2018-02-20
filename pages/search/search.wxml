@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<import src="../template/template.wxml"/>
+<view>
+  <view wx:if = "{{isSearch}}" class="page__bd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+
+  <template wx:if ="{{isSearch}}" is="book-list" data="{{books, scrollViewMargin}}"/>
+
+
+  <scroll-view style="height: 100vh; margin-top: 10px; overflow: hidden" scroll-y="true" scroll-x="true" wx:if="{{!isSearch}}">
+    <view>
+      <text class="collect-books-total">共{{books.length}}本</text>
+    </view>
+    <view class="collect-books">
+      <view style="display: flex; flex-direction: column; height: 90px;width: 30%;padding: 10px 0px 0px 8px;" bindtap='searchBook'>
+        <i class="fa fa-plus-square-o fa-5x collect-add-book" aria-hidden="true"></i>
+        <text class="collect-recent-read">添加你喜欢的小说</text>
+      </view>
+
+      <block wx:for-items="{{books}}" wx:for-item="item" wx:key="_id">
+        <view id="{{index}}" class="collect-book" bindtap="didSelectCell">
+          <image class="collect-img" mode="scaleToFill" src="{{item.cover}}" />
+          <text class="collect-title">{{item.title}}</text>
+          <text class="collect-recent-read">阅读到{{item.recentBookRead}}</text>
+        </view>
+      </block>
+    </view>
+
+  </scroll-view>
+
+</view>

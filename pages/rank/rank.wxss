@@ -1,0 +1,41 @@
+/* rank.wxss */
+
+.type-rank {
+  background: #f2f2f2;
+  height: 50px;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.type-title {
+  line-height: 50px;
+  color: gray;
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+.rank-image {
+  width: 27px;
+  height: 27px;
+  margin: 8px 10px 8px 15px;
+}
+
+.rank-title {
+  line-height: 27px;
+  height: 27px;
+  margin: 8px 10px 8px 5px;
+  font-size: 16px;
+}
+
+.rank-item {
+   display: flex; 
+   border-bottom: 1px solid #E5E5E5;
+}
+
+.other-rank-arrow {
+  line-height: 27px;
+  height: 27px;
+  margin-right: 5px;
+  position: absolute;
+  right: 10px;
+  margin-top: 5px;
+}

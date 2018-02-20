@@ -1,0 +1,23 @@
+<template name='book-list'>
+  <scroll-view style="margin-top: {{scrollViewMargin}}px;" scroll-y="true">
+    <block wx:for-items="{{books}}" wx:for-item="item" wx:key="_id">
+      <view class="posts-list">
+        <view id="{{index}}" class="posts-item" bindtap="didSelectCell">
+          <image class="cellimage" mode="scaleToFill" src="{{item.cover}}" />
+          <view class="celllabel">
+            <text class="celltext">{{item.title}}</text>
+            <text class="cell-author">{{item.author}} | {{item.cat}}</text>
+            <text class="cell-intro">{{item.shortIntro}}</text>
+            <view class="flex-cell-row">
+              <text class="cell-follower">{{item.latelyFollower}}</text>
+              <text class="cell-author">人在追 | </text>
+              <text class="cell-follower">{{item.retentionRatio === null ? 0 : item.retentionRatio}}%</text>
+              <text class="cell-author">留存</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+</template>

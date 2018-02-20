@@ -1,0 +1,17 @@
+<!--rank.wxml-->
+<scroll-view scroll-y="true" style="height: 100vh; margin-bottom: 8px;">
+  <block wx:for-items="{{ranks}}" wx:for-item="item" wx:key="rank">
+    <view >
+      <view wx:if="{{item.type === -1}}" class="type-rank">
+        <text class="type-title">{{item.title}}</text>
+      </view>
+      <view  data-statu = "{{item.type}}" wx:elif= "{{!item.collapse || item.type === 2}}" id = "{{item._id}}"  class="rank-item"  bindtap='onRankClick'>
+        <image src="http://statics.zhuishushenqi.com{{ item.cover }}" mode="aspectFit" class="rank-image"></image>
+        <text class="rank-title">{{item.title}}</text>
+        <i wx:if="{{item.type === 2 && item.collapse}}" class="fa fa-angle-up other-rank-arrow" aria-hidden="true"></i>
+        <i wx:if="{{item.type === 2 && !item.collapse}}" class="fa fa-angle-down other-rank-arrow" aria-hidden="true"></i>
+      </view>
+    </view>
+
+  </block>
+</scroll-view>
